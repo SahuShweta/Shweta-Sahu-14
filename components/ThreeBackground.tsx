@@ -1,5 +1,5 @@
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -42,12 +42,18 @@ const ParticleField = () => {
 
 const ThreeBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 -z-10 bg-[#0a0118]">
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <color attach="background" args={['#0a0118']} />
-        <ambientLight intensity={0.5} />
-        <ParticleField />
-      </Canvas>
+    <div className="fixed inset-0 -z-10 bg-gradient-to-b from-[#0a0118] via-[#1a0033] to-[#0f001a]">
+      <Suspense fallback={null}>
+        <Canvas 
+          camera={{ position: [0, 0, 5], fov: 75 }}
+          style={{ width: '100%', height: '100%' }}
+          dpr={[1, 2]}
+        >
+          <color attach="background" args={['#0a0118']} />
+          <ambientLight intensity={0.5} />
+          <ParticleField />
+        </Canvas>
+      </Suspense>
       {/* Subtle overlay to ensure text readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-backgroundDark/20 to-backgroundDark pointer-events-none" />
     </div>
