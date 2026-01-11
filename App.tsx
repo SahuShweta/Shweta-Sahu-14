@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
@@ -11,15 +10,14 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThreeBackground from './components/ThreeBackground';
 import { motion, useScroll, useSpring } from 'framer-motion';
-
-const App: React.FC = () => {
+const App: React.FC = () =>
+  {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
-
   return (
     <div className="relative selection:bg-primary/30 selection:text-white overflow-x-hidden bg-backgroundDark">
       {/* Scroll Progress Bar */}
